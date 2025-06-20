@@ -1,0 +1,446 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<style>
+  *{
+    padding:0;
+    margin:0;
+  }
+  #main{
+    height:100vh;
+    position:relative;
+    background:green;
+  }
+  #boxone{
+    height:10%;
+    width:20%;
+    
+    position:absolute;
+    top:0%;
+  }
+  #img{
+    position:fixed;
+    height:100%;
+    width:100%;
+    visibility:hidden;
+    z-index:1;
+  }
+  #retry{
+    position:fixed;
+  border-radius:3px;
+  padding:10px;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  z-index:2;
+  visibility:hidden;
+  background:#ec3939dc;
+  color:white;
+  font-family:Sans-Serif,Arial;
+  font-size:bolder;
+  }
+   #start{
+    position:fixed;
+  border-radius:3px;
+  padding:10px 30px;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  z-index:2;
+  visibility:visible;
+  background:#ec3939dc;
+  color:white;
+  font-family:Sans-Serif,Arial;
+  font-size:bolder;
+  }
+
+  #boxtwo{
+    position:absolute;
+    height:10%;
+    width:20%;
+    left:40%;
+    top:0%;
+    
+  }
+  #boxthree{
+    position:absolute;
+    height:10%;
+    width:20%;
+    left:79%;
+    top:0%;
+  
+  }
+  #total{
+    position:fixed;
+    top:30%;
+    left:50%;
+    transform:translate(-50%,-30%);
+    visibility:hidden;
+    font-family: Arial,Sans-Serif;
+    font-size:140px;
+    color:white;
+    z-index:2;
+    
+  }
+    #audio11,#audio222,#audio333, #audio1,#audio22,#audio33,#audio,#audio2,#audio3,#gameoveraudio{
+    position:fixed;
+    visibility:hidden;
+  }
+
+  
+</style>
+</head>
+<body>
+  <div id="main">
+    <div id="start">Start</div>
+  
+<audio id="audio" controls>
+  <source src="ah.mp3" type="audio/mpeg">
+</audio>
+<audio id="audio2" controls>
+  <source src="ah.mp3" type="audio/mpeg">
+</audio>
+<audio id="audio3" controls>
+  <source src="ah.mp3" type="audio/mpeg">
+</audio>
+<audio id="gameoveraudio" controls>
+  <source src="gameover.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Extra !-->
+<audio id="audio1" controls>
+  <source src="ah.mp3" type="audio/mpeg">
+</audio>
+<audio id="audio22" controls>
+  <source src="ah.mp3" type="audio/mpeg">
+</audio>
+<audio id="audio33" controls>
+  <source src="ah.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Extra !-->
+<audio id="audio11" controls>
+  <source src="ah.mp3" type="audio/mpeg">
+</audio>
+<audio id="audio222" controls>
+  <source src="ah.mp3" type="audio/mpeg">
+</audio>
+<audio id="audio333" controls>
+  <source src="ah.mp3" type="audio/mpeg">
+</audio>
+
+
+
+    <img id="img" src="over.jpg">
+    <button id="retry">Try Again!</button>
+    <div id="score">Score:0</div>
+    <div id="total">jesjsjsjs</div>
+    <img src="box.png" id="boxone">
+    <img src="box.png" id="boxtwo">
+    <img src="box.png" id="boxthree">
+  </div>
+  
+  <script>
+  var main = document.getElementById("main")
+  var score = document.getElementById("score");
+  var s=0; //Score per click
+    var boxone = document.getElementById("boxone");
+    var boxtwo = document.getElementById("boxtwo");
+    var boxthree = document.getElementById("boxthree");
+    var img = document.getElementById("img")
+    var retry = document.getElementById("retry");
+    var total = document.getElementById("total");
+    var start = document.getElementById("start");
+    
+    //audio
+    var audio = document.getElementById("audio")
+    var audiotwo = document.getElementById("audio2")
+    var audiothree = document.getElementById("audio3");
+    
+    //extra 2
+    var audioone = document.getElementById("audio1")
+    var audiotwotwo = document.getElementById("audio22")
+    var audiothreethree = document.getElementById("audio33");
+    
+    //extra 3
+    var audiooneone = document.getElementById("audio11")
+    var audiotwotwotwo = document.getElementById("audio222")
+    var audiothreethreethree = document.getElementById("audio333");
+    
+    //audioincrement
+    var aone = 0;
+    var atwo = 0;
+    var athree = 0;
+    var newaudio = new Audio("ah.mp3")
+    var newaudiotwo = new Audio("ah.mp3")
+    var newaudiothree = new Audio("ah.mp3")
+    var gameoveraudio = new Audio("gameover.mp3");
+    
+    function gameover(){
+      gameoveraudio.preload="auto"
+      gameoveraudio.play();
+    }
+    var inc=0;
+    
+    var speed = 0;
+    var status="run";
+    
+    start.onclick = ()=>{
+    function run(){
+      
+      if(status=="run"){
+      if(inc<=100){
+        
+       inc += 0.02+speed
+      boxone.style.top=inc+"%";
+      
+      }else{
+     gameover();
+      score.textContent="Score: "+s;
+      inc=0;
+      boxone.style.top=inc+"%";
+      speed=0;
+      document.getElementById("img").style.visibility="visible";
+      retry.style.visibility="visible";
+      total.style.visibility="visible"
+      total.textContent=s;
+       s=0;
+      status="over"
+      
+        }
+        
+    }else{
+      clearInterval(i);
+    }
+      
+    }
+    var i = setInterval(run,10);
+    boxone.onclick= ()=>{
+      
+      if(aone==0){
+        aone++;
+      atwo=0;
+      athree=0;
+      speed+=0.02;
+      inc=0;
+    s++;
+    score.textContent="Score: "+s;
+      audio.preload = "auto"
+      audio.play(); }else if(aone==1){
+      aone++;
+      atwo=0;
+      athree=0;
+      speed+=0.02;
+      inc=0;
+    s++;
+    score.textContent="Score: "+s;
+      audio.preload = "auto"
+      audio.play();
+    }else if(aone == 2){
+      aone++;
+      atwo=0;
+      athree=0;
+      speed+=0.02;
+      inc=0;
+    s++;
+    score.textContent="Score: "+s;
+      audioone.preload = "auto"
+      audioone.play();
+    }else if(aone==3){
+      aone++;
+      atwo=0;
+      athree=0;
+      speed+=0.02;
+      inc=0;
+    s++;
+    score.textContent="Score: "+s;
+      audiooneone.preload = "auto"
+      audiooneone.play();
+    }else{
+      aone=0;
+    }
+    
+    }
+    
+    
+    //box 2
+   var inctwo=0;
+   var speedtwo =0;
+    function runtwo(){
+      start.style.visibility="hidden";
+      if(status=="run"){
+      if(inctwo<=100){
+        
+       inctwo += 0.02+speedtwo;
+      boxtwo.style.top=inctwo+"%";
+      
+      }else{
+      gameover();
+      score.textContent="Score: "+s;
+      inctwo=0;
+      boxtwo.style.top=inctwo+"%";
+      speedtwo=0;
+      document.getElementById("img").style.visibility="visible";
+      retry.style.visibility="visible"
+      total.style.visibility="visible";
+      total.textContent=s;
+       s=0;
+      status="over";
+      
+        }
+        
+    }else{
+      clearInterval(x);
+    }
+      
+    }
+    var x = setInterval(runtwo,10);
+    boxtwo.onclick= ()=>{
+      
+      if(atwo==0){
+        aone=0;
+      atwo++;
+      athree=0;
+      speedtwo+=0.02;
+      inctwo=0;
+    s++;
+    score.textContent="Score: "+s;
+      audiotwo.preload = "auto"
+      audiotwo.play(); }else if(atwo==1){
+      aone=0;
+      atwo++;
+      athree=0;
+      speedtwo+=0.02;
+      inctwo=0;
+    s++;
+    score.textContent="Score: "+s;
+      audiotwotwo.preload = "auto"
+      audiotwotwo.play();
+    }else if(atwo == 2){
+      aone=0;
+      atwo++;
+      athree=0;
+      speedtwo+=0.02;
+      inctwo=0;
+    s++;
+    score.textContent="Score: "+s;
+      audiotwotwo.preload = "auto"
+      audiotwotwo.play();
+    }else if(atwo==3){
+      aone=0;
+      atwo++;
+      athree=0;
+      speedtwo+=0.02;
+      inctwo=0;
+    s++;
+    score.textContent="Score: "+s;
+      audiotwotwotwo.preload = "auto"
+      audiotwotwotwo.play();
+    }else{
+      atwo=0;
+    }
+    }
+    
+      //box 3
+   var incthree=0;
+   var speedthree =0;
+    function runthree(){
+      
+      if(status=="run"){
+      if(incthree<=100){
+        
+       incthree += 0.02+speedthree;
+      boxthree.style.top=incthree+"%";
+      
+      }else{
+      gameover();
+      score.textContent="Score: "+s;
+      incthree=0;
+      boxthree.style.top=incthree+"%";
+      speedthree=0;
+      document.getElementById("img").style.visibility="visible";
+      retry.style.visibility="visible"
+      total.style.visibility="visible"
+      total.textContent=s;
+       s=0;
+      status="over"
+      
+        }
+        
+    }else{
+      clearInterval(y);
+    }
+      
+    }
+    var y = setInterval(runthree,10);
+    boxthree.onclick= ()=>{
+      
+        if(athree==0){
+        aone=0;
+      atwo=0;
+      athree++;
+      speedthree+=0.02;
+      incthree=0;
+    s++;
+    score.textContent="Score: "+s;
+      audiothree.preload = "auto"
+      audiothree.play(); }else if(athree==1){
+      aone=0;
+      atwo=0;
+      athree++;
+      speedthree+=0.02;
+      incthree=0;
+    s++;
+    score.textContent="Score: "+s;
+      audiothreethree.preload = "auto"
+      audiothreethree.play();
+    }else if(athree == 2){
+      aone=0;
+      atwo=0;
+      athree++;
+      speedthree+=0.02;
+      incthree=0;
+    s++;
+    score.textContent="Score: "+s;
+      audiothrethree.preload = "auto"
+      audiothreethree.play();
+    }else if(athree==3){
+      aone=0;
+      atwo=0;
+      athree++;
+      speedthree+=0.02;
+      incthree=0;
+    s++;
+    score.textContent="Score: "+s;
+      audiothreethreethree.preload = "auto"
+      audiothreethreethree.play();
+    }else{
+      athree=0;
+    }
+    }
+    
+    //retry for all
+    retry.onclick=()=>{
+      status="run"
+      i = setInterval(run,10);
+      x = setInterval(runtwo,10);
+      y = setInterval(runthree,10)
+      img.style.visibility="hidden";
+      retry.style.visibility="hidden"
+      total.style.visibility="hidden"
+      speed=0;
+      inc=0;
+      speedtwo=0;
+      inctwo=0;
+      speedthree=0;
+      incthree=0;
+      
+    }
+    }
+  </script>
+</body>
+
+
+</html>
