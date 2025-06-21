@@ -3,7 +3,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
- <title>Press the Pres.</title>
 <style>
   *{
     padding:0;
@@ -41,6 +40,21 @@
   color:white;
   font-family:Sans-Serif,Arial;
   font-size:bolder;
+  }
+  #fb{
+    position:fixed;
+    top:60%;
+    left:50%;
+    transform: translate(-50%,-60%);
+    z-index:2;
+    text-decoration:none;
+    font-family: Sans-Serif, Arial;
+    font-size:bolder;
+    padding:8px 5px;
+    background:#1877F2;
+    border:none;
+    color:white;
+    visibility:hidden;
   }
    #start{
     position:fixed;
@@ -136,6 +150,7 @@
 
     <img id="img" src="over.jpg">
     <button id="retry">Try Again!</button>
+    <a id="fb" href="https://www.facebook.com/angel.gurang.14">Facebook</a>
     <div id="score">Score:0</div>
     <div id="total">jesjsjsjs</div>
     <img src="box.png" id="boxone">
@@ -144,6 +159,7 @@
   </div>
   
   <script>
+  var fb = document.getElementById("fb")
   var main = document.getElementById("main")
   var score = document.getElementById("score");
   var s=0; //Score per click
@@ -206,6 +222,7 @@
       document.getElementById("img").style.visibility="visible";
       retry.style.visibility="visible";
       total.style.visibility="visible"
+      fb.style.visibility="visible"
       total.textContent=s;
        s=0;
       status="over"
@@ -286,6 +303,7 @@
       document.getElementById("img").style.visibility="visible";
       retry.style.visibility="visible"
       total.style.visibility="visible";
+      fb.style.visibility="visible"
       total.textContent=s;
        s=0;
       status="over";
@@ -364,6 +382,7 @@
       document.getElementById("img").style.visibility="visible";
       retry.style.visibility="visible"
       total.style.visibility="visible"
+      fb.style.visibility="visible"
       total.textContent=s;
        s=0;
       status="over"
@@ -431,6 +450,7 @@
       img.style.visibility="hidden";
       retry.style.visibility="hidden"
       total.style.visibility="hidden"
+      fb.style.visibility="hidden"
       speed=0;
       inc=0;
       speedtwo=0;
