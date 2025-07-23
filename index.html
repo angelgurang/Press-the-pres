@@ -159,6 +159,17 @@
   </div>
   
   <script>
+
+var m = document.getElementById("main");
+m.onclick = function(){
+
+ if(m.exitFullscreen){
+m.exitFullscreen();
+ }else{
+m.requestFullscreen();
+ }
+}
+   
   var fb = document.getElementById("fb")
   var main = document.getElementById("main")
   var score = document.getElementById("score");
